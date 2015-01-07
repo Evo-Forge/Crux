@@ -1,5 +1,5 @@
 {
-  "name": "Krux",
+  "name": "krux",
   "author": "PrearlVentures",
   "version": "0.0.1",
   "scripts": {
@@ -43,5 +43,27 @@
     "Readme.md",
     "index.js",
     "lib/"
-  ]
+  ],
+  "description": "A framework like no other",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PearlVentures/Krux"
+  },
+  "keywords": [
+    "framework",
+    "express",
+    "mongo",
+    "sql",
+    "build",
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PearlVentures/Krux/issues"
+  },
+  "homepage": "https://github.com/PearlVentures/Krux"
 }

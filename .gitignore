@@ -8,3 +8,5 @@ Thumbs.db
 *.gz
 node_modules
 docs
+lib2
+index2.js
