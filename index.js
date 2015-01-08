@@ -24,7 +24,8 @@ krux.__defineSetter__('Component', function() {});
 var Application = require('./lib/core/application'),
   Logger = require('./lib/util/log'),
   Server = require('./lib/components/server/index'),
-  Service = require('./lib/components/service/_interface'),
+  ServiceInterface = require('./lib/components/service/_interface'),
+  Service = require('./lib/components/service'),
   Sql = require('./lib/components/sql/index'),
   Build = require('./lib/components/build/index'),
   Mongo = require('./lib/components/mongo/index');
@@ -47,8 +48,31 @@ krux.__defineSetter__('app', function(){});
 krux.Log = Logger;
 krux.Server = Server;
 krux.Build = Build.Processes;
-krux.Service = Service; // this is our base service.
+krux.Service = ServiceInterface; // this is our base service.
 krux.Database = {
   Sql: Sql,
   Mongo: Mongo
+};
+
+/*
+* Utility function that displays all the default values of every component.
+* */
+krux.defaults = function GetDefaults(which) {
+  var d = {
+    log: Logger.super_.default(),
+    server: Server.super_.default(),
+    build: {},
+    service: Service.super_.default(),
+    database: {
+      sql: Sql.super_.default(),
+      mongo: Mongo.super_.default()
+    }
+  };
+  for(var k in Build.Processes) {
+    d.build[k] = Build.Processes[k].default || {};
+  }
+  if(typeof which === 'string') {
+    return d[which] || null;
+  }
+  return d;
 };
