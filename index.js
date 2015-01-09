@@ -1,7 +1,8 @@
 /*
 * This is what we expose to the outside world.
 * */
-var extend = require('node.extend');
+var extend = require('node.extend'),
+  util = require('util');
 var Component = require('./lib/core/component');
 
 var krux = {},
@@ -14,6 +15,7 @@ module.exports = krux;
  * Custom utility function.
  * */
 krux.util = require('./lib/util/util');
+
 
 krux.__defineGetter__('Component', function() {
   return Component();
@@ -53,6 +55,21 @@ krux.Database = {
   Sql: Sql,
   Mongo: Mongo
 };
+
+/*
+* Utility function, globalize the krux module.
+* */
+krux.globalize = function PlaceKruxInGlobal() {
+  if(typeof global['krux'] !== 'undefined') throw new Error('krux.globalize: krux already exists in the global scope.');
+  global['krux'] = krux;
+  return krux;
+};
+
+/*
+* Utility function that will perform inheritance
+* */
+krux.inherits = krux.util.inherits;
+krux.promise = krux.util.promise;
 
 /*
 * Utility function that displays all the default values of every component.
