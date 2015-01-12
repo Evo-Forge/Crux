@@ -5,23 +5,23 @@ var extend = require('node.extend'),
   util = require('util');
 var Component = require('./lib/core/component');
 
-var krux = {},
-  kruxApp = null;
+var crux = {},
+  cruxApp = null;
 
-module.exports = krux;
+module.exports = crux;
 
 
 
 /*
  * Custom utility function.
  * */
-krux.util = require('./lib/util/util');
+crux.util = require('./lib/util/util');
 
 
-krux.__defineGetter__('Component', function() {
+crux.__defineGetter__('Component', function() {
   return Component();
 });
-krux.__defineSetter__('Component', function() {});
+crux.__defineSetter__('Component', function() {});
 
 /* We now expose our core components */
 var Application = require('./lib/core/application'),
@@ -35,47 +35,47 @@ var Application = require('./lib/core/application'),
 
 
 /*
-* Because the Krux framework will run as a singleton instance, the first time
-* Krux.app is requested, we will create the application.
+* Because the Crux framework will run as a singleton instance, the first time
+* Crux.app is requested, we will create the application.
 * */
-krux.__defineGetter__('app', function() {
-  if(kruxApp !== null) {
-    return kruxApp;
+crux.__defineGetter__('app', function() {
+  if(cruxApp !== null) {
+    return cruxApp;
   }
   var app = Application();
-  kruxApp = new app();
-  return kruxApp;
+  cruxApp = new app();
+  return cruxApp;
 });
-krux.__defineSetter__('app', function(){});
+crux.__defineSetter__('app', function(){});
 
-krux.Log = Logger;
-krux.Server = Server;
-krux.Build = Build.Processes;
-krux.Service = ServiceInterface; // this is our base service.
-krux.Database = {
+crux.Log = Logger;
+crux.Server = Server;
+crux.Build = Build.Processes;
+crux.Service = ServiceInterface; // this is our base service.
+crux.Database = {
   Sql: Sql,
   Mongo: Mongo
 };
 
 /*
-* Utility function, globalize the krux module.
+* Utility function, globalize the crux module.
 * */
-krux.globalize = function PlaceKruxInGlobal() {
-  if(typeof global['krux'] !== 'undefined') throw new Error('krux.globalize: krux already exists in the global scope.');
-  global['krux'] = krux;
-  return krux;
+crux.globalize = function PlaceCruxInGlobal() {
+  if(typeof global['crux'] !== 'undefined') throw new Error('crux.globalize: crux already exists in the global scope.');
+  global['crux'] = crux;
+  return crux;
 };
 
 /*
 * Utility function that will perform inheritance
 * */
-krux.inherits = krux.util.inherits;
-krux.promise = krux.util.promise;
+crux.inherits = crux.util.inherits;
+crux.promise = crux.util.promise;
 
 /*
 * Utility function that displays all the default values of every component.
 * */
-krux.defaults = function GetDefaults(which) {
+crux.defaults = function GetDefaults(which) {
   var d = {
     log: Logger.super_.default(),
     server: Server.super_.default(),

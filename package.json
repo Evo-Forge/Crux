@@ -1,19 +1,16 @@
 {
-  "name": "krux",
+  "name": "crux",
   "author": "PrearlVentures",
   "version": "0.0.2",
   "scripts": {
-    "test": "make test",
     "start": "node example/app.js"
   },
   "dependencies": {
     "aliasify": "^1.4.0",
     "async": "0.9.0",
-    "bloody-promise": "^1.0.3",
     "bluebird": "^2.6.2",
     "body-parser": "^1.10.0",
     "browserify": "^6.2.0",
-    "cookie": "0.1.2",
     "express": "3.3.4",
     "js-yaml": "3.2.2",
     "log4js": "0.6.x",
@@ -31,28 +28,26 @@
     "underscore": "1.7.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-concurrent": "1.0.*",
-    "grunt-contrib-concat": "0.5.0"
   },
   "engines": {
     "node": "0.10.x",
     "npm": "1.2.x"
   },
   "files": [
-    "LICENSE",
-    "Readme.md",
+    "README.md",
     "index.js",
-    "lib/"
+    "lib/",
+    "example/"
   ],
   "description": "A framework like no other",
   "main": "index.js",
   "directories": {
-    "example": "example"
+    "example": "example",
+    "lib": "lib"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PearlVentures/Krux"
+    "url": "https://github.com/PearlVentures/Crux"
   },
   "keywords": [
     "framework",
@@ -60,11 +55,13 @@
     "mongo",
     "sql",
     "build",
-    "angular"
+    "angular",
+    "api",
+    "rest"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PearlVentures/Krux/issues"
+    "url": "https://github.com/PearlVentures/Crux/issues"
   },
-  "homepage": "https://github.com/PearlVentures/Krux"
+  "homepage": "https://github.com/PearlVentures/Crux"
 }

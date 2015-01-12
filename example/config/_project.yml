@@ -1,0 +1,87 @@
+# Core build component configuration
+# More configurations and default values can be found under lib/components/<componentName>
+build:
+  autoRun: true       # This will re-compile all the build processes once the app starts
+  autoWatch: false    # If set to true, the build process will start watching their files and compile them on change
+  process:            # We will define the angulare-core, angular-templates, sass & commonjs build processes
+    angular:
+      # This will include the compiling of angular javascript (excluding templates)
+      core:
+        path: 'front/angular'   # The path (relative to the app's rootdir) to the angular project
+        entry: 'app.js'         # The angular's main entry application. This will be loaded last
+        config: 'config.$environment.js' # This is the configuration file that will be loaded when compiling. Useful for environment-specific configrations
+        priority: ['util/', 'core/', 'controllers/'] # Specify an array of javaScript files to include right after the entry point & configuration point. Useful when having specific logic before app
+        module: 'app'          # This is the angular's main module name.
+        output: 'public/js/build/$module.angular.js' # This will be the file where all the angular.js functionality will be exported (except templates)
+
+      # This will compile all angular.js views into a single .js file, using angular's built in template caching mechanism
+      templates:
+        extension: 'html'             # By default, we use html extension
+        path: 'front/angular/views'   # Angular's view folder
+        module: 'app'                # The module name under which we'll register the templates
+        viewPath: ''                  # Specify the root view path when using in angular's controllers.Ex: "views/index.js" will be "index" with viewPath="" and "/something/index" with viewPath="/something/"
+        viewDelimiter: '/'            # By default, the delimiter we'll use when creating the viewPath. Defaults to /
+        output: 'public/js/build/$module.templates.js' # This will be the file containing the cached html view files.
+
+    # This will compile our commonjs functionality (maybe a custom script of some sort). The commonjs module makes use of browserify's require() on client side
+    commonjs:
+      path: 'front/plugin'
+      entry: 'demo.js'
+      output: 'public/js/build/demo.$environment.js'
+
+    # This will be our scss functionality for creating .css files.
+    sass:
+      path: 'front/styles'                          # The path to our .scss files
+      entry: 'demo.scss'                            # The main .scss file to compile
+      output: 'public/css/demo.css'     # The output .css file.
+      includes: []                        # Additional paths to include in the sass compilation process
+      #sass: Additional sass options ( see https://www.npmjs.com/package/node-sass)
+
+# Each node.js application should make use of services. Crux provides singleton-service auto-loading with the "service" component
+# Note that these services are available on the back-end, and they must extend crux.Service
+service:
+  path: 'app/services'
+
+# This is where we configure our back-end node.express application, bootstrapped with Crux's routing style.
+# For more information on the crux server, see lib/components/server
+server:
+  debug: true   # Debug the server requests with information about their execution time. Can turn this off in production
+  host: 'localhost'   # Specify the server's hostname. Server host/port/etc should be overridden in the app's environment config.
+  port: 3000          # HTTP port we're listening on
+  basePath: ''        # This is the default base path that will be used when creating the server's URL path.
+  ip: '0.0.0.0'       # The ethernet interface to bind to. Defaults to all.
+  render: 'swig'      # By default, the rendering system of choice is "swig" (http://paularmstrong.github.io/swig/), chosen for its extensibility performance and stability.
+  #url: null     # This setting is dynamically created based on the hostname/port/ssl configurations of the server. It will then be available under server.config.url, but it can also be overridden with a custom url.
+  request:  # This part contains settings about a http request
+    sesskey: 'demo.ssid'  # The session key we're going to use to store our settings.
+    secret: 'fgsdklgj'  # The secret key we're going to use for our session
+    cors: false         # Enabling this will enable cross-origin requests. Useful when creating APIs
+    geolocation: false  # The server comes with geoip-lite integration. Enabling this will register the .getIp() method from a request object
+  path: # Default paths to load.
+    routes: 'app/routes'    # The back-end routing folder.
+    views: 'app/views'      # The back-end views folder
+    docs: 'app/docs'        # By default, the server will create documentation based on the defined routes
+    public: 'public/'    # The default public folder. This will be accessible from the outside.
+  views: # Default settings for the back-end viewing system.
+    cache: false                # This should be set to true in production
+    errors: 'app/views/errors'  # The default folder to render HTTP error codes (ex: errors/500.swig, errors/404.swig)
+  # express:   This is where we can specify other express-related configuration. See http://expressjs.com/3x/api.html
+
+# Our example project will also use a mysql database. We use Sequelize ORM to wrap over mysql. This is where we set our settings.
+sql:
+  host: 'localhost' # This is the database's hostname.
+  user: 'root'      # The database username & password.
+  password: ''
+  database: 'crux_example'  # The database we're using.
+  debug: true       # This will log every query to the console. Can be disabled in production
+  sync: false        # Whenever the application will start, this will try and sync all the model fields and create new tables. Should be set to false in production and manually diff the databases.
+  setup: false      # CAUTION: this will REMOVE all tables from the database, and re-create the entire db. Should be used ONLY in development
+  path:
+    models: 'app/models'    # This is the folder where we're going to define our backend models.
+    sql: 'app/models/sql'   # Our app may have custom SQL to execute after sync. Place sql files here.
+
+# These settings are related to the main crux application, extended by our custom app.
+# For example, we can define/create our own custom components and place them under app/components
+crux:
+  components: 'app/components'
+  extends: 'app/extend'
