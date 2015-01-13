@@ -12,7 +12,9 @@ app
   .appConfig('config/dev.js')
   .components(['log', 'build', 'service', 'server']);
 
+
 app.init();
+
 
 if(NODE_ENV === 'dev') {
   app.component('build').set('autoWatch', true);

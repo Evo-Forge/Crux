@@ -11,6 +11,9 @@ module.exports = {
     database: 'crux_example',
     sync: true
   },
+  build: {
+    autoWatch: true
+  },
   services: {
     myService: {
       location: 'http://testLocation/'

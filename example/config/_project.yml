@@ -31,11 +31,19 @@ build:
 
     # This will be our scss functionality for creating .css files.
     sass:
-      path: 'front/styles'                          # The path to our .scss files
+      path: 'front/sass'                          # The path to our .scss files
       entry: 'demo.scss'                            # The main .scss file to compile
-      output: 'public/css/demo.css'     # The output .css file.
+      output: 'public/css/sass.css'     # The output .css file.
       includes: []                        # Additional paths to include in the sass compilation process
       #sass: Additional sass options ( see https://www.npmjs.com/package/node-sass)
+
+    # This will be our less functionality for creating .css files. These options are the same as for sass
+    less:
+      path: 'front/less'
+      entry: 'demo.less'
+      output: 'public/css/less.css'
+      include: []
+      # less: Additional less options ( see http://lesscss.org/)
 
 # Each node.js application should make use of services. Crux provides singleton-service auto-loading with the "service" component
 # Note that these services are available on the back-end, and they must extend crux.Service
