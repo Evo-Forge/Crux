@@ -9,4 +9,7 @@ Thumbs.db
 node_modules
 docs
 lib2
-index2.js
+example/public/css/demo.css
+example/public/css/sass.css
+example/public/css/less.css
+example/public/css/style.css

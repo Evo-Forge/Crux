@@ -44,7 +44,12 @@ build:
       output: 'public/css/less.css'
       include: []
       # less: Additional less options ( see http://lesscss.org/)
-
+    # This will be our client-side html -to-js template caching. It will cache all the html files specified, under window.VIEWS.
+    templates:
+      path: 'front/views'
+      output: 'public/js/build/app.templates.js'
+      minify: true
+      wrap: "window['VIEWS'] = $content;"     # $content will be the JSON containing {templatePath:templateView}
 # Each node.js application should make use of services. Crux provides singleton-service auto-loading with the "service" component
 # Note that these services are available on the back-end, and they must extend crux.Service
 service:
