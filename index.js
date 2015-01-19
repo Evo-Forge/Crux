@@ -31,7 +31,8 @@ var Application = require('./lib/core/application'),
   Service = require('./lib/components/service'),
   Sql = require('./lib/components/sql/index'),
   Build = require('./lib/components/build/index'),
-  Mongo = require('./lib/components/mongo/index');
+  Mongo = require('./lib/components/mongo/index'),
+  Redis = require('./lib/components/redis/index');
 
 
 /*
@@ -56,6 +57,7 @@ crux.Database = {
   Sql: Sql,
   Mongo: Mongo
 };
+crux.Redis = Redis;
 
 /*
 * Utility function, globalize the crux module.
