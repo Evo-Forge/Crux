@@ -1,7 +1,7 @@
 /*
 * Loading up the Crux module and starting configuration.
 * */
-var crux = require('../index.js');  // Turn this to require('crux');
+var crux = require('../index.js');  // Turn this to require('node-crux');
 
 var app = crux.app;
 
