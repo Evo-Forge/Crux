@@ -6,9 +6,34 @@ var extend = require('node.extend'),
 var Component = require('./lib/core/component');
 
 var crux = {},
+  processConfig = {},
   cruxApp = null;
 
 module.exports = crux;
+
+/* Reads the process.argv to place items in processConfig  */
+(function setProjectConfig() {
+  var argv = process.argv.slice(2);
+  // We skip the first 2 arguments, as it is node.exe and app.js
+  for(var i=0; i < argv.length; i++) {
+    var key = argv[i].split('=')[0],
+      value = argv[i].split('=')[1] || null;
+    key = key.replace(/-/g, '').toLowerCase();
+    processConfig[key] = value;
+  }
+})();
+
+/* Useful to retrieve command line arguments settings. These settings are of --something=value or something=value.
+* NOTE: all settings keys will be lower case.
+* */
+crux.argv = function GetProcessConfig(key, defaultValue) {
+  if(typeof key !== 'string') return null;
+  key = key.toLowerCase();
+  if(typeof processConfig[key] === 'undefined') {
+    return (typeof defaultValue === 'undefined' ? null : defaultValue);
+  }
+  return processConfig[key];
+};
 
 
 
