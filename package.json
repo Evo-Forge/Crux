@@ -1,7 +1,7 @@
 {
   "name": "node-crux",
   "author": "PrearlVentures",
-  "version": "0.0.6",
+  "version": "0.0.71",
   "scripts": {
     "start": "node example/app.js"
   },
@@ -25,20 +25,23 @@
     "swig": "1.4.2",
     "underscore": "1.7.0"
   },
+  "bin": {
+    "crux": "cli.js"
+  },
   "devDependencies": {
   },
   "files": [
-    "README.md",
-    "LICENSE",
+    "cli.js",
     "index.js",
-    "lib/",
-    "example/"
+    "LICENSE",
+    "package.json",
+    "README.md"
   ],
   "description": "A framework like no other",
   "main": "index.js",
   "directories": {
-    "example": "example",
-    "lib": "lib"
+    "directories.lib": "lib/",
+    "directories.example": ["example/", "boilerplate/"]
   },
   "repository": {
     "type": "git",
