@@ -1,7 +1,7 @@
 {
   "name": "node-crux",
   "author": "PrearlVentures",
-  "version": "0.0.71",
+  "version": "0.0.76",
   "scripts": {
     "start": "node example/app.js"
   },
@@ -31,6 +31,9 @@
   "devDependencies": {
   },
   "files": [
+    "lib/",
+    "example/",
+    "boilerplate/",
     "cli.js",
     "index.js",
     "LICENSE",
