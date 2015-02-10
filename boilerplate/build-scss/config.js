@@ -1,10 +1,12 @@
 module.exports = {
   project: {
     build: {
-      sass: {
-        path: 'front/sass',
-        entry: 'main.scss',
-        output: 'public/css/main.css'
+      process: {
+        sass: {
+          path: 'front/sass',
+          entry: 'main.scss',
+          output: 'public/css/main.css'
+        }
       }
     }
   },
@@ -12,8 +14,10 @@ module.exports = {
     build: {
       autoWatch: true,
       autoRun: true,
-      sass: {
-        compressed: false
+      process: {
+        sass: {
+          compressed: false
+        }
       }
     }
   }

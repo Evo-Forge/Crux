@@ -7,13 +7,13 @@ module.exports = function init(route) {
   route.root('/');  // this route's path is /
 
   route
-    .get('/', 'Landing')
+    .get('/home', 'Landing')
     .query({
       name: route.type.STRING.default('John')
     })
     .then(function() {
-      this.render('views/index', {
-        title: 'Landing',
+      this.render('home', {
+        title: 'Home',
         name: this.query('name')
       });
     });

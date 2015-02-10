@@ -5,8 +5,9 @@ var crux = require('../index.js');  // Turn this to require('node-crux');
 
 var app = crux.app;
 
+crux.globalize();
+
 app
-  .globalize()
   .path(__dirname)
   .projectConfig('config/_project.yml')
   .appConfig('config/dev.js')

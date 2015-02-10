@@ -1,7 +1,7 @@
 
 var helloWorld = function HelloWorldService() {};
 
-helloWorld.Extends(crux.Service);
+crux.extends(helloWorld, crux.Service);
 
 helloWorld.prototype.init = function InitializeHello(config) {
   // Initialize the service with the config.
