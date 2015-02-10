@@ -1,7 +1,7 @@
 module.exports = {
   project: {
     mongo: {
-      schemas: 'app/models/mongo'
+      schemas: 'app/schemas'
     }
   },
   environment: {
