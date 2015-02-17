@@ -24,3 +24,13 @@ if(NODE_ENV === 'dev') {
 app.run(function() {
   log.info('Example application running. Access it on %s', app.component('server').url);
 });
+
+
+/**
+ * Some jsdoc stuff
+ * @constructor
+ * @param {string} title - The title della book
+ * */
+function Book(title, author) {
+
+}
