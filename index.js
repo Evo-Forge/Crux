@@ -96,6 +96,12 @@ crux.__defineGetter__('app', function() {
 crux.__defineSetter__('app', function(){});
 
 crux.Log = Logger;
+/**
+ * The namespace exposes all the http-related components used by the crux Server component. Although a large component, it exposes
+ * most of its functionality so that developers have control over it.<Br>
+ * <b>Note</b>: for a better documentation view, we've created crux.Server as a namespace, but <b>it is actually the {@link crux.Server.Server} class
+ *@namespace crux.Server
+* */
 crux.Server = Server;
 crux.Build = Build.Processes;
 crux.Service = ServiceInterface; // this is our base service.
