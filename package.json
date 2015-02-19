@@ -20,6 +20,8 @@
     "crux": "cli.js"
   },
   "devDependencies": {
+    "ink-docstrap": "^0.5.2",
+    "jsdoc": "^3.3.0-beta1"
   },
   "files": [
     "lib/",
@@ -35,7 +37,10 @@
   "main": "index.js",
   "directories": {
     "directories.lib": "lib/",
-    "directories.example": ["example/", "boilerplate/"]
+    "directories.example": [
+      "example/",
+      "boilerplate/"
+    ]
   },
   "repository": {
     "type": "git",

@@ -8,7 +8,6 @@ Thumbs.db
 *.gz
 node_modules
 docs
-lib2
 example/public/css/demo.css
 example/public/css/sass.css
 example/public/css/less.css
