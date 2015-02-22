@@ -1,14 +1,18 @@
 module.exports = {
   project: {
     static: {
-      ip: '0.0.0.0',
-      port: 3200,
-      path: 'public/'
+      files: ['public/**/*', 'public/*'],
+      server: {
+        baseDir: './public',
+        index: 'index.html'
+      }
     }
   },
   environment: {
     static: {
-      debug: true
+      open: true,
+      host: 'localhost',
+      port: 3200
     }
   }
 };
