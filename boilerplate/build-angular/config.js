@@ -7,9 +7,10 @@ module.exports = {
       process: {
         angular: {
           templates: {
-            module: 'app',
+            module: 'app.views',
             extension: 'html',
-            path: 'front/app/views',
+            viewPath: "",
+            path: 'front/app/views/',
             output: 'public/js/build/app.templates.js'
           },
           core: {
