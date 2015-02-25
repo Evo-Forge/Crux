@@ -103,7 +103,7 @@ crux.Log = Logger;
  *@namespace crux.Server
 * */
 crux.Server = Server;
-crux.Build = Build.Processes;
+crux.Build = Build.Process;
 crux.Service = ServiceInterface; // this is our base service.
 /**
  * The namespace contains all database-related components. Currently, we only support MySQL and MongoDB components.
@@ -180,8 +180,8 @@ crux.defaults = function GetDefaults(which) {
       mongo: Mongo.super_.default()
     }
   };
-  for(var k in Build.Processes) {
-    d.build[k] = Build.Processes[k].default || {};
+  for(var k in Build.Process) {
+    d.build[k] = Build.Process[k].default || {};
   }
   if(typeof which === 'string') {
     return d[which] || null;
