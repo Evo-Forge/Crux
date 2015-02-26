@@ -1,0 +1,37 @@
+{
+  "tags"      : {
+    "allowUnknownTags" : true
+  },
+  "plugins"   : [
+    "plugins/markdown"
+  ],
+  "source": {
+    "include": [
+      "./lib",
+      "./index.js",
+      "./README.md"
+    ]
+  },
+  "templates" : {
+    "cleverLinks"           : false,
+    "monospaceLinks"        : false,
+    "dateFormat"            : "ddd MMM Do YYYY",
+    "outputSourceFiles"     : true,
+    "outputSourcePath"      : true,
+    "systemName"            : "Crux",
+    "footer"                : "",
+    "syntaxTheme":          "dark",
+    "copyright"             : "",
+    "navType"               : "vertical",
+    "theme"                 : "simplex",
+    "linenums"              : false,
+    "collapseSymbols"       : false,
+    "inverseNav"            : true,
+    "highlightTutorialCode" : true,
+    "protocol": "fred://"
+  },
+  "markdown"  : {
+    "parser"   : "gfm",
+    "hardwrap" : true
+  }
+}
