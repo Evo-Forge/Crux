@@ -66,7 +66,8 @@ var Application = require('./lib/core/application'),
   Sql = require('./lib/components/sql/index'),
   Build = require('./lib/components/build/index'),
   Mongo = require('./lib/components/mongo/index'),
-  Redis = require('./lib/components/redis/index');
+  Redis = require('./lib/components/redis/index'),
+  Cache = require('./lib/components/cache/index');
 
 
 /**
@@ -118,7 +119,8 @@ crux.Database = {
  * @namespace crux.Store
 * */
 crux.Store = {
-  Redis: Redis
+  Redis: Redis,
+  Cache: Cache
 };
 
 /**
