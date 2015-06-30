@@ -106,6 +106,14 @@ crux.Log = Logger;
 crux.Server = Server;
 crux.Build = Build.Process;
 crux.Service = ServiceInterface; // this is our base service.
+
+/**
+* We want to make it as easy as possible for developers to validate their data, therefore, we will export a validate() function
+ * at the root level (crux.validate.TYPE() ).
+ * NOTE: this is attached in the Validations file.
+* */
+crux.validate = {};
+
 /**
  * The namespace contains all database-related components. Currently, we only support MySQL and MongoDB components.
  * @namespace crux.Database
