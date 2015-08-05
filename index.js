@@ -58,17 +58,26 @@ crux.__defineGetter__('Component', function() {
 crux.__defineSetter__('Component', function() {});
 
 /* We now expose our core components */
-var Application = require('./lib/core/application'),
-  Logger = require('./lib/util/log'),
-  Server = require('./lib/components/server/index'),
-  ServiceInterface = require('./lib/components/service/_interface'),
-  Service = require('./lib/components/service'),
-  Sql = require('./lib/components/sql/index'),
-  Build = require('./lib/components/build/index'),
-  Mongo = require('./lib/components/mongo/index'),
-  Redis = require('./lib/components/redis/index'),
-  Cache = require('./lib/components/cache/index');
+var Application = require('./lib/core/application');
 
+var _cache = {};  //cache of componentPath:requiredObject
+function defineComponentGetter(object, key, path, _inner) {
+  Object.defineProperty(object, key, {
+    enumerable: true,
+    get: function() {
+      if(typeof _cache[path] === 'undefined') {
+        _cache[path] = require(path);
+        if(typeof _inner === 'string') {
+          _cache[path] = _cache[path][_inner];
+        }
+      }
+      return _cache[path];
+    },
+    set: function(v) {
+      _cache[path] = v;
+    }
+  });
+}
 
 /**
 * Because the Crux framework will run as a singleton instance, the first time
@@ -96,16 +105,19 @@ crux.__defineGetter__('app', function() {
 });
 crux.__defineSetter__('app', function(){});
 
-crux.Log = Logger;
+defineComponentGetter(crux, 'Log', './lib/util/log');
+
 /**
  * The namespace exposes all the http-related components used by the crux Server component. Although a large component, it exposes
  * most of its functionality so that developers have control over it.<Br>
  * <b>Note</b>: for a better documentation view, we've created crux.Server as a namespace, but <b>it is actually the {@link crux.Server.Server} class
  *@namespace crux.Server
 * */
-crux.Server = Server;
-crux.Build = Build.Process;
-crux.Service = ServiceInterface; // this is our base service.
+defineComponentGetter(crux, 'Server', './lib/components/server');
+defineComponentGetter(crux, 'Build', './lib/components/build/index', 'Process');
+defineComponentGetter(crux, 'Service', './lib/components/service/_interface');
+
+defineComponentGetter(crux, 'Task', './lib/components/tasks');
 
 /**
 * We want to make it as easy as possible for developers to validate their data, therefore, we will export a validate() function
@@ -118,18 +130,17 @@ crux.validate = {};
  * The namespace contains all database-related components. Currently, we only support MySQL and MongoDB components.
  * @namespace crux.Database
  * */
-crux.Database = {
-  Sql: Sql,
-  Mongo: Mongo
-};
+crux.Database = {};
+defineComponentGetter(crux.Database, 'Sql', "./lib/components/sql");
+defineComponentGetter(crux.Database, 'Mongo', './lib/components/mongo');
 /**
 * The namespace contains all data-store related components. Currently, we only support Redis.
  * @namespace crux.Store
 * */
-crux.Store = {
-  Redis: Redis,
-  Cache: Cache
-};
+crux.Store = {};
+defineComponentGetter(crux.Store, 'Redis', './lib/components/redis');
+defineComponentGetter(crux.Store, 'Cache', './lib/components/cache');
+
 
 /**
 * Utility function that globalizes the crux module, placing it under global['crux'] and making it
@@ -181,17 +192,17 @@ crux.promise = crux.util.promise;
 * */
 crux.defaults = function GetDefaults(which) {
   var d = {
-    log: Logger.super_.default(),
-    server: Server.super_.default(),
+    log: crux.Log.super_.default(),
+    server: crux.Server.super_.default(),
     build: {},
-    service: Service.super_.default(),
+    service: crux.Service.super_.default(),
     database: {
-      sql: Sql.super_.default(),
-      mongo: Mongo.super_.default()
+      sql: crux.Sql.super_.default(),
+      mongo: crux.Mongo.super_.default()
     }
   };
-  for(var k in Build.Process) {
-    d.build[k] = Build.Process[k].default || {};
+  for(var k in crux.Build.Process) {
+    d.build[k] = crux.Build.Process[k].default || {};
   }
   if(typeof which === 'string') {
     return d[which] || null;
