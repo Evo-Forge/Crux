@@ -180,6 +180,16 @@ crux.inherits = crux.util.inherits;
 * */
 crux.promise = crux.util.promise;
 
+/*
+ * Utility function that will create an error object based on the given code, message and data.
+ * */
+crux.Error = function CreateError(errorCode, errorMessage, errorData) {
+  var err = new Error(errorMessage);
+  err.code = errorCode.toUpperCase();
+  if(errorData) err.data = errorData;
+  return err;
+};
+
 /**
 * Utility function that displays all the default values of every component. These values can be easily overwritten in
  * either the project configuration, the application configuration or via environment-specific configuration (files or
