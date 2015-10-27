@@ -118,6 +118,7 @@ defineComponentGetter(crux, 'Build', './lib/components/build/index', 'Process');
 defineComponentGetter(crux, 'Service', './lib/components/service/_interface');
 
 defineComponentGetter(crux, 'Task', './lib/components/tasks');
+defineComponentGetter(crux, 'Githook', './lib/components/githook');
 
 /**
 * We want to make it as easy as possible for developers to validate their data, therefore, we will export a validate() function
