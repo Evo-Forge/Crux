@@ -3,6 +3,8 @@
 Thumbs.db
 *.swp
 .idea
+.git
+.npm
 *.log
 *.pid
 *.gz
