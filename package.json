@@ -1,7 +1,7 @@
 {
   "name": "node-crux",
   "author": "PrearlVentures",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "scripts": {
     "start": "node example/app.js"
   },
