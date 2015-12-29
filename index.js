@@ -188,7 +188,11 @@ crux.promise = crux.util.promise;
 crux.Error = function CreateError(errorCode, errorMessage, errorData) {
   var err = new Error(errorMessage);
   err.code = errorCode.toUpperCase();
-  if(errorData) err.data = errorData;
+  if(typeof errorData === 'number') {
+    err.statusCode = errorData;
+  } else if(errorData) {
+    err.data = errorData;
+  }
   return err;
 };
 
