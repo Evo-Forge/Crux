@@ -193,6 +193,7 @@ crux.Error = function CreateError(errorCode, errorMessage, errorData) {
   } else if(errorData) {
     err.data = errorData;
   }
+  err.custom = true;
   return err;
 };
 
