@@ -201,17 +201,17 @@ crux.Error = function CreateError(errorCode, errorMessage, errorData) {
 * Utility function that will create an error-LIKE object {code, message, data, custom, statusCode} but with no actual stacktrace attached.
 * */
 crux.DataError = function createError(errorCode, errorMessage, errorData) {
-  var err = {
-    code: errorCode.toUpperCase(),
-    message: errorMessage
+  var dataError = function() {
+    this.code = errorCode.toUpperCase();
+    this.message = errorMessage;
+    if(typeof errorData === 'number') {
+      this.statusCode = errorData;
+    } else if(errorData) {
+      this.data = errorData;
+    }
   };
-  if(typeof errorData === 'number') {
-    err.statusCode = errorData;
-  } else if(errorData) {
-    err.data = errorData;
-  }
-  err.custom = true;
-  return err;
+  dataError.prototype.custom = true;
+  return new dataError();
 };
 
 /**
