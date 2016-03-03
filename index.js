@@ -197,6 +197,23 @@ crux.Error = function CreateError(errorCode, errorMessage, errorData) {
   return err;
 };
 
+/*
+* Utility function that will create an error-LIKE object {code, message, data, custom, statusCode} but with no actual stacktrace attached.
+* */
+crux.DataError = function createError(errorCode, errorMessage, errorData) {
+  var err = {
+    code: errorCode.toUpperCase(),
+    message: errorMessage
+  };
+  if(typeof errorData === 'number') {
+    err.statusCode = errorData;
+  } else if(errorData) {
+    err.data = errorData;
+  }
+  err.custom = true;
+  return err;
+};
+
 /**
 * Utility function that displays all the default values of every component. These values can be easily overwritten in
  * either the project configuration, the application configuration or via environment-specific configuration (files or
