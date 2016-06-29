@@ -4,7 +4,7 @@
     </head>
     <body>
         <div class="main-container">
-            {% for ns in routes %}
+            {% for key, ns in routes %}
                 <div class="route" style="padding: 20px; margin: 5px 0; border: 1px solid black;">
                     <div class="name" style="padding: 5px; width: 100%; border-bottom: 1px solid black;">
                         Namespace <b>{{ ns.__namespace }}</b> &nbsp; - /{{ ns.__rootPath }}
