@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "async": "1.4.x",
-    "bluebird": "3.3.4",
+    "bluebird": "3.7.2",
     "js-yaml": "3.3.1",
     "log4js": "0.6.x",
     "node-fs": "^0.1.7",
